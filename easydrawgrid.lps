@@ -7,10 +7,9 @@
       <Unit>
         <Filename Value="easydrawgrid.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="28"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="27" Y="6"/>
+        <UsageCount Value="29"/>
       </Unit>
       <Unit>
         <Filename Value="unitmain.pas"/>
@@ -19,7 +18,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitMain"/>
-        <UsageCount Value="28"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="376"/>
+        <CursorPos X="16" Y="388"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -53,10 +55,22 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory>
+    <JumpHistory HistoryIndex="3">
       <Position>
         <Filename Value="unitmain.pas"/>
         <Caret Line="18" Column="41"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="388" Column="25" TopLine="388"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="395" Column="25" TopLine="395"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="389" Column="25" TopLine="381"/>
       </Position>
     </JumpHistory>
     <RunParams>

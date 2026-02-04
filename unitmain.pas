@@ -55,6 +55,7 @@ type
     PrintDialog1: TPrintDialog;
     SavePictureDialog1: TSavePictureDialog;
     ScrollBox1: TScrollBox;
+    SpeedButton1: TSpeedButton;
     SpeedButtonPrint: TSpeedButton;
     SpeedButtonOpen: TSpeedButton;
     SpeedButtonSave: TSpeedButton;
@@ -82,6 +83,7 @@ type
     procedure MenuItemOpenClick(Sender: TObject);
     procedure MenuItemSaveClick(Sender: TObject);
     procedure PaintBox1Paint(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButtonExitClick(Sender: TObject);
     procedure SpeedButtonOpenClick(Sender: TObject);
     procedure SpeedButtonPrintClick(Sender: TObject);
@@ -224,6 +226,7 @@ begin
     try
       FImageOriginalPath := OpenPictureDialog1.FileName;
       FImageOriginal.LoadFromFile(FImageOriginalPath);
+      PaintBox1.Refresh;
     Except
       on E: Exception do
       begin
@@ -374,6 +377,16 @@ begin
   DrawBackgroundImage(PaintBox1.Canvas, FRectSuport);
   DrawSuport(PaintBox1.Canvas, FRectSuport);
   DrawGrid(PaintBox1.Canvas, FRectSuport);
+end;
+
+procedure TFormMain.SpeedButton1Click(Sender: TObject);
+var
+  n: double;
+begin
+  n := FloatSpinEditWidth.Value;
+  FloatSpinEditWidth.Value := FloatSpinEditHeight.Value;
+  FloatSpinEditHeight.Value := n;
+  PaintBox1.Refresh;
 end;
 
 procedure TFormMain.SpeedButtonOpenClick(Sender: TObject);
