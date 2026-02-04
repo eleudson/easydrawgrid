@@ -2,10 +2,10 @@ object FormMain: TFormMain
   Left = 2065
   Height = 473
   Top = 101
-  Width = 801
+  Width = 816
   Caption = 'Easy Draw Grid'
   ClientHeight = 473
-  ClientWidth = 801
+  ClientWidth = 816
   Menu = MainMenu1
   Position = poDesktopCenter
   OnCreate = FormCreate
@@ -14,7 +14,7 @@ object FormMain: TFormMain
     Left = 0
     Height = 104
     Top = 30
-    Width = 801
+    Width = 816
     ActivePage = TabSheetSuport
     Align = alTop
     TabIndex = 0
@@ -22,7 +22,7 @@ object FormMain: TFormMain
     object TabSheetSuport: TTabSheet
       Caption = 'Suporte'
       ClientHeight = 76
-      ClientWidth = 793
+      ClientWidth = 808
       object GroupBox1: TGroupBox
         Left = 0
         Height = 76
@@ -193,7 +193,7 @@ object FormMain: TFormMain
     object TabSheetGrid: TTabSheet
       Caption = 'Grade'
       ClientHeight = 76
-      ClientWidth = 793
+      ClientWidth = 808
       object GroupBox4: TGroupBox
         Left = 0
         Height = 76
@@ -298,12 +298,12 @@ object FormMain: TFormMain
     Left = 0
     Height = 316
     Top = 134
-    Width = 801
+    Width = 816
     HorzScrollBar.Page = 201
     VertScrollBar.Page = 105
     Align = alClient
     ClientHeight = 312
-    ClientWidth = 797
+    ClientWidth = 812
     TabOrder = 1
     object PaintBox1: TPaintBox
       Left = 96
@@ -317,7 +317,7 @@ object FormMain: TFormMain
     Left = 0
     Height = 23
     Top = 450
-    Width = 801
+    Width = 816
     Panels = <    
       item
         Width = 50
@@ -328,7 +328,7 @@ object FormMain: TFormMain
     Left = 0
     Height = 30
     Top = 0
-    Width = 801
+    Width = 816
     ButtonHeight = 24
     ButtonWidth = 25
     Caption = 'ToolBar1'
