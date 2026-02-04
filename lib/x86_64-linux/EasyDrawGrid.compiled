@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="/usr/bin/fpc" Date="1625802185"/>
-  <Params Value="-MObjFPC -Scghi -Cg -O1 -gw3 -gl -l -vewnhibq -Fi/home/eleudson/develop/lazarus/grider3/lib/x86_64-linux -Fu/home/eleudson/develop/lazarus/grider3/ -Fu/usr/share/lazarus/4.4.0/components/printers/lib/x86_64-linux/gtk2 -Fu/usr/share/lazarus/4.4.0/components/cairocanvas/lib/x86_64-linux/gtk2 -Fu/usr/share/lazarus/4.4.0/lcl/units/x86_64-linux/gtk2 -Fu/usr/share/lazarus/4.4.0/lcl/units/x86_64-linux -Fu/usr/share/lazarus/4.4.0/components/freetype/lib/x86_64-linux -Fu/usr/share/lazarus/4.4.0/components/lazutils/lib/x86_64-linux -Fu/usr/share/lazarus/4.4.0/packager/units/x86_64-linux -FU/home/eleudson/develop/lazarus/grider3/lib/x86_64-linux/ -FE/home/eleudson/develop/lazarus/grider3/ -o/home/eleudson/develop/lazarus/grider3/EasyDrawGrid -dLCL -dLCLgtk2 EasyDrawGrid.lpr"/>
-</CONFIG>
