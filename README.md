@@ -9,6 +9,10 @@ Comtinuaremos acrescentando funcionalidades à medida que tenhamos necessidade n
 
 ## Como usar?
 
+Para o Windows 10 (64 bits), baixe o arquivo [EasyDrawGrid.exe](https://github.com/eleudson/easydrawgrid/blob/main/EasyDrawGrid.exe), na lista de arquivos do projeto. 
+
+Para o Linux (64 bits), baixe o arquivo [EasyDrawGrid](https://github.com/eleudson/easydrawgrid/blob/main/EasyDrawGrid) (sem extensão), na lista de arquivos do projeto, atribua permissão de execução (chmod +x EasyDrawGrid) e execute com ./EasyDrawGrid.
+
 Ao abri-lo, o programa apresenta o suporte no tamanho A4 no formado paisagem (297mm x 210mm) e uma grade 3x3. 
 
 Abra então uma imagem e o programa irá adaptar da melhor forma a altura ou a largura da mesma à dimensão do suporte, mostrando um fundo branco para a área não ocupada pela imagem no suporte. Observe também que na barra de status, abaixo na tela, será mostrada a dimensão e o nome do arquivo da imagem aberta.
