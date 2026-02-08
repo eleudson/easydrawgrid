@@ -73,6 +73,7 @@ type
     procedure BitBtnOutClick(Sender: TObject);
     procedure CheckBoxGridVisibleChange(Sender: TObject);
     procedure ColorButtonGridColorChanged(Sender: TObject);
+    procedure ColorButtonSuportColorChanged(Sender: TObject);
     procedure FloatSpinEditHeightEditingDone(Sender: TObject);
     procedure FloatSpinEditWidthEditingDone(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -445,6 +446,11 @@ begin
 end;
 
 procedure TFormMain.ColorButtonGridColorChanged(Sender: TObject);
+begin
+  PaintBox1.Refresh;
+end;
+
+procedure TFormMain.ColorButtonSuportColorChanged(Sender: TObject);
 begin
   PaintBox1.Refresh;
 end;

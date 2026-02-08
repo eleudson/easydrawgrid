@@ -120,6 +120,7 @@ object FormMain: TFormMain
           ButtonColorSize = 16
           ButtonColor = clBlack
           ColorDialog = ColorDialogSuport
+          OnColorChanged = ColorButtonSuportColorChanged
         end
         object Cor: TLabel
           Left = 136
