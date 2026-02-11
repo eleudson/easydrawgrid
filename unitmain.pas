@@ -108,7 +108,7 @@ type
     procedure DrawSuport(Target: TCanvas; R: TRect);
     procedure DrawGrid(Target: TCanvas; R: TRect);
     procedure ShowZoom();
-    procedure ShowFileName(DestW, DestH: Integer);
+    procedure ShowFileName();
 
   public
 
@@ -236,7 +236,7 @@ begin
       end;
     end;
   end;
-  StatusBar1.Panels[0].Text := FImageOriginalPath;
+  PaintBox1.Refresh;
 end;
 
 procedure TFormMain.MenuItemSaveClick(Sender: TObject);
@@ -320,7 +320,7 @@ begin
       DestH := R.Height;
       DestW := Round(R.Height * ImgRatio);
     end;
-  ShowFileName(DestW, DestH);
+  ShowFileName();
   FRectTarget := Rect(0, 0, DestW, DestH);
   Target.StretchDraw(FRectTarget, FImageOriginal.Graphic);
 end;
@@ -518,15 +518,38 @@ begin
   Result := PXtoMM(PX, Screen.PixelsPerInch);
 end;
 
-procedure TFormMain.ShowFileName(DestW, DestH: Integer);
+procedure TFormMain.ShowFileName();
 var
-  Wmm, Hmm: Double;
+  Wmm, Hmm, ImgRatio, SupRatio: Double;
+  SWpx, SHpx, DestW, DestH: Integer;
   SWmm, SHmm, SFile: String;
 
 begin
   SFile := '';
   if FImageOriginalPath <> '' then
   begin
+      if (FImageOriginal.Graphic = nil) or (FImageOriginal.Graphic.Empty) then
+        Exit;
+
+      SWpx := MMtoPX(FloatSpinEditWidth.Value , Screen.PixelsPerInch);
+      SHpx := MMtoPX(FloatSpinEditHeight.Value , Screen.PixelsPerInch);
+
+      ImgRatio := FImageOriginal.Width / FImageOriginal.Height;
+      SupRatio := SWpx / SHpx;
+
+      if ImgRatio > SupRatio then
+        begin
+          // Image largest than PaintBox
+          DestW := SWpx;
+          DestH := Round(SWpx / ImgRatio);
+        end
+      else
+        begin
+          // Image higher than PaintBox
+          DestH := SHpx;
+          DestW := Round(SHpx * ImgRatio);
+        end;
+
       Wmm := PXScreenToMM(DestW);
       Hmm := PXScreenToMM(DestH);
       Str(Wmm:6:1, SWmm);

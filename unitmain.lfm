@@ -1,37 +1,38 @@
 object FormMain: TFormMain
   Left = 2065
   Height = 473
-  Top = 101
-  Width = 816
+  Top = 88
+  Width = 826
   Caption = 'Easy Draw Grid'
   ClientHeight = 473
-  ClientWidth = 816
+  ClientWidth = 826
   Menu = MainMenu1
   Position = poDesktopCenter
+  LCLVersion = '4.4.0.0'
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   object PageControl1: TPageControl
     Left = 0
     Height = 104
     Top = 30
-    Width = 816
+    Width = 826
     ActivePage = TabSheetSuport
     Align = alTop
     TabIndex = 0
     TabOrder = 0
     object TabSheetSuport: TTabSheet
       Caption = 'Suporte'
-      ClientHeight = 76
-      ClientWidth = 808
+      ClientHeight = 72
+      ClientWidth = 816
       object GroupBox1: TGroupBox
         Left = 0
-        Height = 76
+        Height = 72
         Top = 0
         Width = 296
         Align = alLeft
         Caption = 'Dimensão em Milímetros'
-        ClientHeight = 56
-        ClientWidth = 292
+        ClientHeight = 53
+        ClientWidth = 294
         TabOrder = 0
         object FloatSpinEditWidth: TFloatSpinEdit
           Left = 56
@@ -84,14 +85,14 @@ object FormMain: TFormMain
       end
       object GroupBox2: TGroupBox
         Left = 302
-        Height = 76
+        Height = 72
         Top = 0
         Width = 216
         Align = alLeft
         BorderSpacing.Left = 6
         Caption = 'Linha'
-        ClientHeight = 56
-        ClientWidth = 212
+        ClientHeight = 53
+        ClientWidth = 214
         TabOrder = 1
         object Label3: TLabel
           Left = 8
@@ -133,14 +134,14 @@ object FormMain: TFormMain
       end
       object GroupBox3: TGroupBox
         Left = 524
-        Height = 76
+        Height = 72
         Top = 0
-        Width = 272
+        Width = 284
         Align = alLeft
         BorderSpacing.Left = 6
         Caption = 'Zoom'
-        ClientHeight = 56
-        ClientWidth = 268
+        ClientHeight = 53
+        ClientWidth = 282
         TabOrder = 2
         object BitBtnIn: TBitBtn
           Left = 8
@@ -173,7 +174,7 @@ object FormMain: TFormMain
           Left = 216
           Height = 18
           Top = 19
-          Width = 40
+          Width = 56
           Alignment = taRightJustify
           AutoSize = False
           Caption = '100%'
@@ -193,35 +194,35 @@ object FormMain: TFormMain
     end
     object TabSheetGrid: TTabSheet
       Caption = 'Grade'
-      ClientHeight = 76
-      ClientWidth = 808
+      ClientHeight = 72
+      ClientWidth = 816
       object GroupBox4: TGroupBox
         Left = 0
-        Height = 76
+        Height = 72
         Top = 0
         Width = 272
         Align = alLeft
         Caption = 'Quantidade'
-        ClientHeight = 56
-        ClientWidth = 268
+        ClientHeight = 70
+        ClientWidth = 270
         TabOrder = 0
         object Label4: TLabel
           Left = 8
-          Height = 15
+          Height = 18
           Top = 21
-          Width = 55
+          Width = 71
           Caption = 'Horizontal'
         end
         object Label5: TLabel
           Left = 152
-          Height = 15
+          Height = 18
           Top = 21
-          Width = 38
+          Width = 52
           Caption = 'Vertical'
         end
         object SpinEditGridH: TSpinEdit
           Left = 88
-          Height = 23
+          Height = 35
           Top = 17
           Width = 50
           Alignment = taCenter
@@ -230,7 +231,7 @@ object FormMain: TFormMain
         end
         object SpinEditGridV: TSpinEdit
           Left = 208
-          Height = 23
+          Height = 35
           Top = 17
           Width = 50
           Alignment = taCenter
@@ -240,25 +241,25 @@ object FormMain: TFormMain
       end
       object GroupBox5: TGroupBox
         Left = 278
-        Height = 76
+        Height = 72
         Top = 0
         Width = 304
         Align = alLeft
         BorderSpacing.Left = 6
         Caption = 'Linha'
-        ClientHeight = 56
-        ClientWidth = 300
+        ClientHeight = 70
+        ClientWidth = 302
         TabOrder = 1
         object Label6: TLabel
           Left = 8
-          Height = 15
+          Height = 18
           Top = 21
-          Width = 51
+          Width = 65
           Caption = 'Espessura'
         end
         object SpinEditGridLineWidth: TSpinEdit
           Left = 80
-          Height = 23
+          Height = 35
           Top = 17
           Width = 50
           Alignment = taCenter
@@ -278,16 +279,16 @@ object FormMain: TFormMain
         end
         object Cor1: TLabel
           Left = 141
-          Height = 15
+          Height = 18
           Top = 21
-          Width = 19
+          Width = 24
           Caption = 'Cor'
         end
         object CheckBoxGridVisible: TCheckBox
           Left = 224
-          Height = 19
+          Height = 23
           Top = 19
-          Width = 51
+          Width = 69
           Caption = 'Visível'
           TabOrder = 1
           OnChange = CheckBoxGridVisibleChange
@@ -297,14 +298,14 @@ object FormMain: TFormMain
   end
   object ScrollBox1: TScrollBox
     Left = 0
-    Height = 316
+    Height = 319
     Top = 134
-    Width = 816
+    Width = 826
     HorzScrollBar.Page = 201
     VertScrollBar.Page = 105
     Align = alClient
-    ClientHeight = 312
-    ClientWidth = 812
+    ClientHeight = 317
+    ClientWidth = 824
     TabOrder = 1
     object PaintBox1: TPaintBox
       Left = 96
@@ -316,9 +317,9 @@ object FormMain: TFormMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 23
-    Top = 450
-    Width = 816
+    Height = 20
+    Top = 453
+    Width = 826
     Panels = <    
       item
         Width = 50
@@ -329,7 +330,7 @@ object FormMain: TFormMain
     Left = 0
     Height = 30
     Top = 0
-    Width = 816
+    Width = 826
     ButtonHeight = 24
     ButtonWidth = 25
     Caption = 'ToolBar1'
