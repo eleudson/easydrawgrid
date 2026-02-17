@@ -162,7 +162,7 @@ end;
 procedure TFormMain.MenuItemPrintClick(Sender: TObject);
 var
   PrintBmp: TBitmap;
-  i, MLeft, MTop, MRight, MButton: Integer;
+  i, MLeft, MTop, MRight, MButton, PrtW, PrtH: Integer;
   PaperName: String;
   R: TRect;
 begin
@@ -181,16 +181,22 @@ begin
         end;
       end;
 
-      Printer.Orientation := poLandscape;
+      if (FloatSpinEditWidth.Value > FloatSpinEditHeight.Value) then
+          Printer.Orientation := poLandscape
+      else
+          Printer.Orientation := poPortrait;
 
-      PrintBmp.SetSize(Printer.PageWidth, Printer.PageHeight);
+      PrtW := Printer.PageWidth;
+      PrtH := Printer.PageHeight;
+
+      PrintBmp.SetSize(PrtW, PrtH);
 
       // Pixel format definition to prevent color problem
       PrintBmp.PixelFormat := pf24bit; // or pf32bit
 
       // Paint white background to avoid it black
       PrintBmp.Canvas.Brush.Color := clWhite;
-      R := Rect(0, 0, Printer.PageWidth, Printer.PageHeight);
+      R := Rect(0, 0, PrtW, PrtH);
       PrintBmp.Canvas.FillRect(R);
 
       // Draw and save canvas
@@ -198,15 +204,12 @@ begin
       DrawSuport(PrintBmp.Canvas, R);
       DrawGrid(PrintBmp.Canvas, R);
 
-      //DrawCanvas(PrintBmp.Canvas, Rect(0, 0, PrintBmp.Width, PrintBmp.Height));
-
       // Estica a imagem para preencher a folha
       MLeft := MMtoPx(10, Printer.XDPI); // 20mm
       MTop := MMtoPx(10, Printer.YDPI);
       MRight := MMtoPx(10, Printer.XDPI);
       MButton := MMtoPx(10, Printer.YDPI);
-      R := Rect(MLeft, MTop, Printer.PageWidth - MRight, Printer.PageHeight - MButton);
-      //Rect(0, 0, Printer.PageWidth, Printer.PageHeight);
+      R := Rect(MLeft, MTop, PrtW - MRight, PrtH - MButton);
       Printer.Canvas.StretchDraw(R, PrintBmp);
     finally
       Printer.EndDoc;

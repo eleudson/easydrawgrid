@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="15"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="45"/>
       </Unit>
       <Unit>
         <Filename Value="unitmain.pas"/>
@@ -19,9 +19,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="unitMain"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="528"/>
-        <CursorPos X="21" Y="540"/>
-        <UsageCount Value="29"/>
+        <TopLine Value="176"/>
+        <CursorPos Y="184"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -33,7 +33,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="12"/>
         <CursorPos X="3" Y="49"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -41,21 +41,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="486"/>
         <CursorPos Y="718"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.4.0/lcl/include/canvas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1166"/>
         <CursorPos Y="1182"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.4.0/lcl/include/graphiccontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="81"/>
         <CursorPos Y="97"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/share/lazarus/4.4.0/components/lazutils/laztracer.pas"/>
@@ -63,10 +63,10 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos Y="58"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="21">
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="unitmain.pas"/>
         <Caret Line="18" Column="41"/>
@@ -154,10 +154,49 @@
         <Filename Value="unitmain.pas"/>
         <Caret Line="524" Column="27" TopLine="516"/>
       </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="540" Column="44" TopLine="523"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="191" Column="31" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="184" Column="33" TopLine="174"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="192" TopLine="174"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="193" TopLine="174"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="194" TopLine="174"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="197" TopLine="174"/>
+      </Position>
+      <Position>
+        <Filename Value="unitmain.pas"/>
+        <Caret Line="188" Column="14" TopLine="180"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <Watches>
+      <Item>
+        <Expression Value="FloatSpinEditWidth.Value"/>
+      </Item>
+    </Watches>
+  </Debugging>
 </CONFIG>

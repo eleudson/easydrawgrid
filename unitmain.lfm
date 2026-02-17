@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 2065
+  Left = 2366
   Height = 473
-  Top = 88
+  Top = 154
   Width = 826
   Caption = 'Easy Draw Grid'
   ClientHeight = 473
@@ -427,7 +427,7 @@ object FormMain: TFormMain
     Top = 296
   end
   object OpenPictureDialog1: TOpenPictureDialog
-    Filter = 'Graphic (*.PNG;*.XPM;*.BMP;*.CUR;*.ICO;*.ICNS;*.JPEG;*.JPG;*.JPE;*.JFIF;*.TIF;*.TIFF;*.GIF;*.PBM;*.PGM;*.PPM)|*.PNG;*.XPM;*.BMP;*.CUR;*.ICO;*.ICNS;*.JPEG;*.JPG;*.JPE;*.JFIF;*.TIF;*.TIFF;*.GIF;*.PBM;*.PGM;*.PPM|PNG Files (*.PNG)|*.PNG|Pixmap Files (*.XPM)|*.XPM|Bitmap Files (*.BMP)|*.BMP|Cursor Files (*.CUR)|*.CUR|ICON Files (*.ICO)|*.ICO|macOS ICON Files (*.ICNS)|*.ICNS|JPEG Files (*.JPEG;*.JPG;*.JPE;*.JFIF)|*.JPEG;*.JPG;*.JPE;*.JFIF|Tagged Image File Format Files (*.TIF;*.TIFF)|*.TIF;*.TIFF|Graphics Interchange Format Files (*.GIF)|*.GIF|Portable Pixmap Files (*.PBM;*.PGM;*.PPM)|*.PBM;*.PGM;*.PPM|All files (*)|*|'
+    Filter = 'Graphic (*.PNG;*.XPM;*.BMP;*.CUR;*.ICO;*.ICNS;*.JPEG;*.JPG;*.JPE;*.JFIF;*.TIF;*.TIFF;*.GIF;*.PBM;*.PGM;*.PPM)|*.PNG;*.png;*.XPM;*.BMP;*.CUR;*.ICO;*.ICNS;*.JPEG;*.JPG;*.jpg;*.JPE;*.JFIF;*.TIF;*.TIFF;*.GIF;*.PBM;*.PGM;*.PPM|PNG Files (*.PNG)|*.PNG|Pixmap Files (*.XPM)|*.XPM|Bitmap Files (*.BMP)|*.BMP|Cursor Files (*.CUR)|*.CUR|ICON Files (*.ICO)|*.ICO|macOS ICON Files (*.ICNS)|*.ICNS|JPEG Files (*.JPEG;*.JPG;*.JPE;*.JFIF)|*.JPEG;*.JPG;*.JPE;*.JFIF|Tagged Image File Format Files (*.TIF;*.TIFF)|*.TIF;*.TIFF|Graphics Interchange Format Files (*.GIF)|*.GIF|Portable Pixmap Files (*.PBM;*.PGM;*.PPM)|*.PBM;*.PGM;*.PPM|All files (*)|*'
     Left = 424
     Top = 136
   end
