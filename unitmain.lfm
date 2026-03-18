@@ -1,11 +1,11 @@
 object FormMain: TFormMain
-  Left = 2366
+  Left = 760
   Height = 473
-  Top = 154
-  Width = 826
+  Top = 40
+  Width = 1182
   Caption = 'Easy Draw Grid'
   ClientHeight = 473
-  ClientWidth = 826
+  ClientWidth = 1182
   Menu = MainMenu1
   Position = poDesktopCenter
   LCLVersion = '4.4.0.0'
@@ -15,15 +15,15 @@ object FormMain: TFormMain
     Left = 0
     Height = 104
     Top = 30
-    Width = 826
-    ActivePage = TabSheetSuport
+    Width = 1182
+    ActivePage = TabSheetSpiral
     Align = alTop
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheetSuport: TTabSheet
       Caption = 'Suporte'
       ClientHeight = 72
-      ClientWidth = 816
+      ClientWidth = 1172
       object GroupBox1: TGroupBox
         Left = 0
         Height = 72
@@ -119,7 +119,7 @@ object FormMain: TFormMain
           Width = 43
           BorderWidth = 2
           ButtonColorSize = 16
-          ButtonColor = clBlack
+          ButtonColor = clHighlight
           ColorDialog = ColorDialogSuport
           OnColorChanged = ColorButtonSuportColorChanged
         end
@@ -195,7 +195,7 @@ object FormMain: TFormMain
     object TabSheetGrid: TTabSheet
       Caption = 'Grade'
       ClientHeight = 72
-      ClientWidth = 816
+      ClientWidth = 1172
       object GroupBox4: TGroupBox
         Left = 0
         Height = 72
@@ -203,27 +203,27 @@ object FormMain: TFormMain
         Width = 272
         Align = alLeft
         Caption = 'Quantidade'
-        ClientHeight = 70
+        ClientHeight = 53
         ClientWidth = 270
         TabOrder = 0
         object Label4: TLabel
           Left = 8
           Height = 18
-          Top = 21
+          Top = 22
           Width = 71
           Caption = 'Horizontal'
         end
         object Label5: TLabel
           Left = 152
           Height = 18
-          Top = 21
+          Top = 22
           Width = 52
           Caption = 'Vertical'
         end
         object SpinEditGridH: TSpinEdit
           Left = 88
           Height = 35
-          Top = 17
+          Top = 14
           Width = 50
           Alignment = taCenter
           TabOrder = 0
@@ -232,7 +232,7 @@ object FormMain: TFormMain
         object SpinEditGridV: TSpinEdit
           Left = 208
           Height = 35
-          Top = 17
+          Top = 14
           Width = 50
           Alignment = taCenter
           TabOrder = 1
@@ -247,20 +247,20 @@ object FormMain: TFormMain
         Align = alLeft
         BorderSpacing.Left = 6
         Caption = 'Linha'
-        ClientHeight = 70
+        ClientHeight = 53
         ClientWidth = 302
         TabOrder = 1
         object Label6: TLabel
           Left = 8
           Height = 18
-          Top = 21
+          Top = 22
           Width = 65
           Caption = 'Espessura'
         end
         object SpinEditGridLineWidth: TSpinEdit
           Left = 80
           Height = 35
-          Top = 17
+          Top = 14
           Width = 50
           Alignment = taCenter
           TabOrder = 0
@@ -269,29 +269,158 @@ object FormMain: TFormMain
         object ColorButtonGrid: TColorButton
           Left = 168
           Height = 34
-          Top = 11
+          Top = 14
           Width = 43
           BorderWidth = 2
           ButtonColorSize = 16
-          ButtonColor = clBlack
+          ButtonColor = clFuchsia
           ColorDialog = ColorDialogSuport
           OnColorChanged = ColorButtonGridColorChanged
         end
         object Cor1: TLabel
           Left = 141
           Height = 18
-          Top = 21
+          Top = 22
           Width = 24
           Caption = 'Cor'
         end
         object CheckBoxGridVisible: TCheckBox
           Left = 224
           Height = 23
-          Top = 19
+          Top = 20
           Width = 69
           Caption = 'Visível'
           TabOrder = 1
           OnChange = CheckBoxGridVisibleChange
+        end
+      end
+    end
+    object TabSheetSpiral: TTabSheet
+      Caption = 'Espiral'
+      ClientHeight = 72
+      ClientWidth = 1172
+      object GroupBoxSpiralLine: TGroupBox
+        Left = 230
+        Height = 72
+        Top = 0
+        Width = 170
+        Align = alLeft
+        BorderSpacing.Left = 6
+        Caption = 'Linha da Espiral'
+        ClientHeight = 53
+        ClientWidth = 168
+        TabOrder = 0
+        object ColorButtonSpiral: TColorButton
+          Left = 35
+          Height = 34
+          Top = 11
+          Width = 43
+          BorderWidth = 2
+          ButtonColorSize = 16
+          ButtonColor = clLime
+          ColorDialog = ColorDialogSuport
+          OnColorChanged = ColorButtonSpiralColorChanged
+        end
+        object Cor2: TLabel
+          Left = 8
+          Height = 18
+          Top = 19
+          Width = 24
+          Caption = 'Cor'
+        end
+        object CheckBoxSpiralVisible: TCheckBox
+          Left = 91
+          Height = 23
+          Top = 17
+          Width = 69
+          Caption = 'Visível'
+          TabOrder = 0
+          OnChange = CheckBoxSpiralVisibleChange
+        end
+      end
+      object GroupBoxSpiralQuadrant: TGroupBox
+        Left = 0
+        Height = 72
+        Top = 0
+        Width = 224
+        Align = alLeft
+        Caption = 'Quadrante Final'
+        ClientHeight = 53
+        ClientWidth = 222
+        TabOrder = 1
+        object ComboBoxSpiralReference: TComboBox
+          Left = 8
+          Height = 35
+          Top = 11
+          Width = 208
+          ItemHeight = 0
+          Items.Strings = (
+            'Superior esquerdo'
+            'Inferior esquerdo'
+            'Superior direito'
+            'Inferior direito'
+          )
+          TabOrder = 0
+          Text = 'Superior esquerdo'
+          OnChange = ComboBoxSpiralReferenceChange
+        end
+      end
+      object GroupBoxSquareLine: TGroupBox
+        Left = 406
+        Height = 72
+        Top = 0
+        Width = 304
+        Align = alLeft
+        BorderSpacing.Left = 6
+        Caption = 'Linha dos Quadros'
+        ClientHeight = 53
+        ClientWidth = 302
+        TabOrder = 2
+        object Label10: TLabel
+          Left = 8
+          Height = 18
+          Top = 19
+          Width = 65
+          Caption = 'Espessura'
+        end
+        object SpinEditSquareLineWidth: TSpinEdit
+          Left = 80
+          Height = 35
+          Top = 11
+          Width = 50
+          Alignment = taCenter
+          MaxValue = 4
+          MinValue = 1
+          TabOrder = 0
+          Value = 1
+          OnChange = SpinEditSquareLineWidthChange
+        end
+        object ColorButtonSquare: TColorButton
+          Left = 168
+          Height = 34
+          Top = 11
+          Width = 43
+          BorderWidth = 2
+          ButtonColorSize = 16
+          ButtonColor = clAqua
+          ColorDialog = ColorDialogSuport
+          OnColorChanged = ColorButtonSquareColorChanged
+        end
+        object Cor3: TLabel
+          Left = 141
+          Height = 18
+          Top = 19
+          Width = 24
+          Caption = 'Cor'
+        end
+        object CheckBoxSquareVisible: TCheckBox
+          Left = 224
+          Height = 23
+          Top = 17
+          Width = 69
+          Caption = 'Visível'
+          TabOrder = 1
+          OnChange = CheckBoxSquareVisibleChange
         end
       end
     end
@@ -300,12 +429,12 @@ object FormMain: TFormMain
     Left = 0
     Height = 319
     Top = 134
-    Width = 826
+    Width = 1182
     HorzScrollBar.Page = 201
     VertScrollBar.Page = 105
     Align = alClient
     ClientHeight = 317
-    ClientWidth = 824
+    ClientWidth = 1180
     TabOrder = 1
     object PaintBox1: TPaintBox
       Left = 96
@@ -319,7 +448,7 @@ object FormMain: TFormMain
     Left = 0
     Height = 20
     Top = 453
-    Width = 826
+    Width = 1182
     Panels = <    
       item
         Width = 50
@@ -330,7 +459,7 @@ object FormMain: TFormMain
     Left = 0
     Height = 30
     Top = 0
-    Width = 826
+    Width = 1182
     ButtonHeight = 24
     ButtonWidth = 25
     Caption = 'ToolBar1'

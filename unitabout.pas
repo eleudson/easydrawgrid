@@ -21,9 +21,6 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Memo1: TMemo;
-    procedure Label2Click(Sender: TObject);
-    procedure Label3Click(Sender: TObject);
-    procedure Label4Click(Sender: TObject);
   private
 
   public
@@ -39,20 +36,6 @@ implementation
 
 { TFormAbout }
 
-procedure TFormAbout.Label2Click(Sender: TObject);
-begin
-
-end;
-
-procedure TFormAbout.Label3Click(Sender: TObject);
-begin
-
-end;
-
-procedure TFormAbout.Label4Click(Sender: TObject);
-begin
-
-end;
 
 end.
 

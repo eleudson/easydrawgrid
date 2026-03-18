@@ -210,7 +210,6 @@ object FormAbout: TFormAbout
     Width = 318
     Alignment = taCenter
     Caption = 'Site: https://github.com/eleudson/easydrawgrid'
-    OnClick = Label4Click
   end
   object Label5: TLabel
     Left = 144

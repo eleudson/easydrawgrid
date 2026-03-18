@@ -22,10 +22,17 @@ type
     BitBtnOut: TBitBtn;
     BitBtnFit: TBitBtn;
     CheckBoxGridVisible: TCheckBox;
+    CheckBoxSpiralVisible: TCheckBox;
+    CheckBoxSquareVisible: TCheckBox;
+    ColorButtonSpiral: TColorButton;
+    ColorButtonSquare: TColorButton;
     ColorButtonSuport: TColorButton;
     ColorButtonGrid: TColorButton;
     ColorDialogSuport: TColorDialog;
+    ComboBoxSpiralReference: TComboBox;
     Cor1: TLabel;
+    Cor2: TLabel;
+    Cor3: TLabel;
     FloatSpinEditWidth: TFloatSpinEdit;
     FloatSpinEditHeight: TFloatSpinEdit;
     GroupBox1: TGroupBox;
@@ -33,8 +40,12 @@ type
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
     GroupBox5: TGroupBox;
+    GroupBoxSpiralLine: TGroupBox;
+    GroupBoxSquareLine: TGroupBox;
+    GroupBoxSpiralQuadrant: TGroupBox;
     ImageList1: TImageList;
     Label1: TLabel;
+    Label10: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Cor: TLabel;
@@ -63,7 +74,9 @@ type
     SpinEditGridH: TSpinEdit;
     SpinEditLineWidth: TSpinEdit;
     SpinEditGridLineWidth: TSpinEdit;
+    SpinEditSquareLineWidth: TSpinEdit;
     StatusBar1: TStatusBar;
+    TabSheetSpiral: TTabSheet;
     TabSheetGrid: TTabSheet;
     TabSheetSuport: TTabSheet;
     ToolBar1: TToolBar;
@@ -72,8 +85,13 @@ type
     procedure BitBtnInClick(Sender: TObject);
     procedure BitBtnOutClick(Sender: TObject);
     procedure CheckBoxGridVisibleChange(Sender: TObject);
+    procedure CheckBoxSpiralVisibleChange(Sender: TObject);
+    procedure CheckBoxSquareVisibleChange(Sender: TObject);
     procedure ColorButtonGridColorChanged(Sender: TObject);
+    procedure ColorButtonSpiralColorChanged(Sender: TObject);
+    procedure ColorButtonSquareColorChanged(Sender: TObject);
     procedure ColorButtonSuportColorChanged(Sender: TObject);
+    procedure ComboBoxSpiralReferenceChange(Sender: TObject);
     procedure FloatSpinEditHeightEditingDone(Sender: TObject);
     procedure FloatSpinEditWidthEditingDone(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -93,9 +111,13 @@ type
     procedure SpinEditGridLineWidthChange(Sender: TObject);
     procedure SpinEditGridVChange(Sender: TObject);
     procedure SpinEditLineWidthChange(Sender: TObject);
+    procedure SpinEditSpiralLineWidthChange(Sender: TObject);
+    procedure SpinEditSpiralQtyChange(Sender: TObject);
+    procedure SpinEditSquareLineWidthChange(Sender: TObject);
   private
     FZoom: Double;
     FRectSuport: TRect;
+    FRectImage: TRect;
     FImageOriginal: TPicture;
     FImageOriginalPath: String;
 
@@ -107,11 +129,19 @@ type
     procedure DrawBackgroundImage(Target: TCanvas; R: TRect);
     procedure DrawSuport(Target: TCanvas; R: TRect);
     procedure DrawGrid(Target: TCanvas; R: TRect);
+    procedure DrawSpiral(Target: TCanvas; R: TRect);
     procedure ShowZoom();
     procedure ShowFileName();
+    procedure SquareArc(Target: TCanvas; Sqr: TRect; Center: Integer);
+    procedure PaintBox1Refresh();
 
   public
 
+  end;
+
+  TPoint = record
+    X: Integer;
+    Y: Integer;
   end;
 
 var
@@ -136,14 +166,24 @@ begin
   SpinEditLineWidth.Value := 3;
   FloatSpinEditHeight.Value := 210;
   FloatSpinEditWidth.Value := 297;
-  ColorButtonSuport.ButtonColor := clRed;
+  ColorButtonSuport.ButtonColor := clHighlight;
 
   //grid
-  CheckBoxGridVisible.Checked := True;
+  CheckBoxGridVisible.Checked := False;
   SpinEditGridH.Value := 3;
   SpinEditGridV.Value := 3;
   SpinEditGridLineWidth.Value := 2;
-  ColorButtonGrid.ButtonColor := clGreen;
+  ColorButtonGrid.ButtonColor := clFuchsia;
+
+  //spiral
+  CheckBoxSpiralVisible.Checked := False;
+  ColorButtonSpiral.ButtonColor := clLime;
+  ComboBoxSpiralReference.ItemIndex := 0;
+
+  //square
+  CheckBoxSquareVisible.Checked := False;
+  ColorButtonSquare.ButtonColor := clAqua;
+  SpinEditSquareLineWidth.Value := 1;
 
   UpdateRectSuport;
   ShowZoom;
@@ -302,7 +342,6 @@ procedure TFormMain.DrawBackgroundImage(Target: TCanvas; R: TRect);
 var
   DestW, DestH: Integer;
   ImgRatio, SupRatio: Double;
-  FRectTarget: TRect;
 
 begin
   if (FImageOriginal.Graphic = nil) or (FImageOriginal.Graphic.Empty) then
@@ -324,8 +363,8 @@ begin
       DestW := Round(R.Height * ImgRatio);
     end;
   ShowFileName();
-  FRectTarget := Rect(0, 0, DestW, DestH);
-  Target.StretchDraw(FRectTarget, FImageOriginal.Graphic);
+  FRectImage := Rect(0, 0, DestW, DestH);
+  Target.StretchDraw(FRectImage, FImageOriginal.Graphic);
 end;
 
 procedure TFormMain.DrawGrid(Target: TCanvas; R: TRect);
@@ -369,6 +408,180 @@ begin
 
 end;
 
+procedure TFormMain.DrawSpiral(Target: TCanvas; R: TRect);
+const
+  GoldenNum = 1.618033;
+
+var
+  Pace, XArc: Integer;
+  FRec, FSqr: TRect;
+  RectRatio: Double;
+  APen: TPen;
+  TopDown, LeftToRight, isHorizontal: Boolean;
+  ArcCenters: array of Integer;
+
+begin
+  // Draw spiral rectangles
+  if CheckBoxSpiralVisible.Checked or CheckBoxSquareVisible.Checked then
+  begin
+    // quadrant definitions
+    case ComboBoxSpiralReference.ItemIndex of
+      0: begin // top-left
+           TopDown := True;
+           LeftToRight := False;
+           ArcCenters := [0, 1, 3, 2];
+         end;
+      1: begin // bottom-left
+           TopDown := False;
+           LeftToRight := False;
+           ArcCenters := [2, 3, 1, 0];
+         end;
+      2: begin // top-right
+           TopDown := True;
+           LeftToRight := True;
+           ArcCenters := [1, 0, 2, 3];
+         end;
+      3: begin // bottom-right
+           TopDown := False;
+           LeftToRight := True;
+           ArcCenters := [3, 2, 0, 1];
+         end
+    end;
+
+    // adjust original retangle to aureal proportion
+    FRec := R;
+    RectRatio := FRec.Width / FRec.Height;
+    isHorizontal := RectRatio >= 1.0;
+    if isHorizontal then
+      FRec.Width := Round(FRec.Height * GoldenNum)
+    else
+      FRec.Height := Round(FRec.Width / GoldenNum);
+
+    // draw golden squares and spiral
+    Pace := 0;
+    XArc := 0;
+    repeat
+      // define square positioning
+      case Pace of
+      1: TopDown := not TopDown;
+      2: begin
+           LeftToRight := not LeftToRight;
+           Pace := 0;
+         end
+      end;
+
+      // define square coordinates
+      FSqr := FRec;
+      if isHorizontal then // horizontal
+        begin
+          if LeftToRight then
+            begin
+              FSqr.Width := FRec.Height;
+              FRec.Left := FRec.Left + FRec.Height;
+            end
+          else
+            begin
+              FSqr.Left := FRec.Left + Abs(FRec.Width - FRec.Height);
+              FRec.Width := FRec.Width - FRec.Height;
+            end;
+        end
+      else // vertical
+        begin
+          if TopDown then
+            begin
+              FSqr.Height := FRec.Width;
+              FRec.Top := FRec.Top + FSqr.Height;
+            end
+          else
+            begin
+              FSqr.Top := FRec.Top + Abs(FRec.Height - FRec.Width);
+              FRec.Bottom := FSqr.Top;
+            end;
+        end;
+
+      // show square
+      if CheckBoxSquareVisible.Checked then
+      begin
+        APen := Target.Pen;
+        with Target do
+        begin
+          Pen.Color := ColorButtonSquare.ButtonColor;
+          Pen.Width := SpinEditSquareLineWidth.Value;
+          Pen.Style := psDash;
+          Rectangle(FSqr);
+          Pen := APen;
+        end;
+      end;
+
+      if CheckBoxSpiralVisible.Checked then
+        SquareArc(Target, FSqr, ArcCenters[XArc]);
+
+      if XArc = 3 then
+        XArc := 0
+      else
+        XArc := XArc + 1;
+
+      //define new rectangle horientation
+      RectRatio := FRec.Width / FRec.Height;
+      isHorizontal := RectRatio >= 1.0;
+
+      Pace := Pace + 1;
+    until abs(1.00 - RectRatio) <= 0.05;
+  end;
+end;
+
+procedure TFormMain.SquareArc(Target: TCanvas; Sqr: TRect; Center: Integer);
+var
+  Pc, PI, PF, P0, P1, P2, P3: TPoint;
+  R, i, X, Y, ArcLen: Integer;
+  AI, AF, T, Pace: Double;
+
+begin
+  // coordinates of square points
+  P0.X := Sqr.Left;             P0.Y := Sqr.Top;              // left-top
+  P1.X := Sqr.Left + Sqr.Width; P1.Y := Sqr.Top;              // right-top
+  P2.X := Sqr.Left;             P2.Y := Sqr.Top + Sqr.Height; // left-bottom
+  P3.X := Sqr.Left + Sqr.Width; P3.Y := Sqr.Top + Sqr.Height; // right-bottom
+
+  // define center coordinate of circle
+  case Center of
+  0: begin // left-top
+       Pc := P0; PI := P1; PF := P2
+     end;
+  1: begin // right-top
+       Pc := P1; PI := P3; PF := P0;
+     end;
+  2: begin // left-bottom
+       Pc := P2; PI := P0; PF := P3;
+     end;
+  3: begin // right-bottom
+       Pc := P3; PI := P2; PF := P1;
+     end;
+  end;
+
+  // ratio
+  R := round(sqrt(Power(PI.X-Pc.X, 2) + Power(PI.Y-Pc.Y, 2))); // equal Srq.Widht
+
+  // init and final angles
+  AI := ArcTan2(PI.Y - Pc.Y, PI.X - Pc.X);
+  AF := ArcTan2(PF.Y - Pc.Y, PF.X - Pc.X);
+  if AF <= AI then
+    AF := AF + 2 * 3.141516;
+
+  ArcLen := Round(R * (AF - AI));
+  Pace := (AF - AI) / ArcLen; //Screen.PixelsPerInch;
+
+  // plot arc points
+  T := AI;
+  for i := 0 to (ArcLen + 1) do
+  begin
+    X := Round(Pc.X + R * cos(T));
+    Y := Round(Pc.Y + R * sin(T));
+    Target.Pixels[X, Y] := ColorButtonSpiral.ButtonColor;
+    T := T + Pace;
+  end;
+end;
+
 procedure TFormMain.PaintBox1Paint(Sender: TObject);
 begin
   UpdateRectSuport;
@@ -381,6 +594,7 @@ begin
   DrawBackgroundImage(PaintBox1.Canvas, FRectSuport);
   DrawSuport(PaintBox1.Canvas, FRectSuport);
   DrawGrid(PaintBox1.Canvas, FRectSuport);
+  DrawSpiral(PaintBox1.Canvas, FRectImage);
 end;
 
 procedure TFormMain.SpeedButton1Click(Sender: TObject);
@@ -411,6 +625,11 @@ end;
 procedure TFormMain.SpeedButtonExitClick(Sender: TObject);
 begin
   MenuItemExit.Click;
+end;
+
+procedure TFormMain.PaintBox1Refresh();
+begin
+  PaintBox1.Refresh;
 end;
 
 procedure TFormMain.SpinEditGridHChange(Sender: TObject);
@@ -448,12 +667,37 @@ begin
   PaintBox1.Refresh;
 end;
 
+procedure TFormMain.CheckBoxSpiralVisibleChange(Sender: TObject);
+begin
+  PaintBox1.Refresh;
+end;
+
+procedure TFormMain.CheckBoxSquareVisibleChange(Sender: TObject);
+begin
+  PaintBox1.Refresh;
+end;
+
 procedure TFormMain.ColorButtonGridColorChanged(Sender: TObject);
 begin
   PaintBox1.Refresh;
 end;
 
+procedure TFormMain.ColorButtonSpiralColorChanged(Sender: TObject);
+begin
+  PaintBox1.Refresh;
+end;
+
+procedure TFormMain.ColorButtonSquareColorChanged(Sender: TObject);
+begin
+  PaintBox1.Refresh;
+end;
+
 procedure TFormMain.ColorButtonSuportColorChanged(Sender: TObject);
+begin
+  PaintBox1.Refresh;
+end;
+
+procedure TFormMain.ComboBoxSpiralReferenceChange(Sender: TObject);
 begin
   PaintBox1.Refresh;
 end;
@@ -477,6 +721,21 @@ begin
 end;
 
 procedure TFormMain.SpinEditLineWidthChange(Sender: TObject);
+begin
+  PaintBox1.Refresh;
+end;
+
+procedure TFormMain.SpinEditSpiralLineWidthChange(Sender: TObject);
+begin
+  PaintBox1.Refresh;
+end;
+
+procedure TFormMain.SpinEditSpiralQtyChange(Sender: TObject);
+begin
+  PaintBox1.Refresh;
+end;
+
+procedure TFormMain.SpinEditSquareLineWidthChange(Sender: TObject);
 begin
   PaintBox1.Refresh;
 end;
